@@ -1,0 +1,72 @@
+:root {
+  /* COLORS */
+  --primary-blue-950: hsl(213, 96%, 18%);
+  --primary-purple-600: hsl(243, 100%, 62%);
+  --primary-blue-300: hsl(228, 100%, 84%);
+  --primary-blue-200: hsl(206, 94%, 87%);
+  --primary-red-500: hsl(354, 84%, 57%);
+  --neutral-grey-500: hsl(231, 11%, 63%);
+  --neutral-purple-200: hsl(229, 24%, 87%);
+  --neutral-blue-100: hsl(218, 100%, 97%);
+  --neutral-blue-50: hsl(231, 100%, 99%);
+  --neutral-white: hsl(0, 100%, 100%);
+  /* FONT */
+  --font-family: "Ubuntu", sans-serif;
+  --font-size-p: 1rem;
+  --font-weight-default: 400;
+  --font-weight-med: 500;
+  --font-weight-bold: 700;
+  /* SPACING */
+  --spacing-xs: 1rem;
+  --spacing-sm: 2.5rem;
+  --spacing-md: 5rem;
+  --spacing-lg: 8rem;
+  --spacing-xl: 14rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  background-color: var(--neutral-blue-100);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-default);
+}
+
+.container {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  background-color: var(--neutral-white);
+  padding: var(--spacing-xs);
+  border-radius: 1rem;
+}
+
+.sidebar {
+  width: 30%;
+  height: 100%;
+  background-image: url("assets/images/bg-sidebar-desktop.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+form {
+  width: 100%;
+  height: 100%;
+}
+
+.form-step {
+  display: none;
+}
+
+.active {
+  display: flex;
+  flex-direction: column;
+}
