@@ -39,7 +39,7 @@ body {
   padding: var(--spacing-lg) var(--spacing-xl);
   background-color: var(--neutral-blue-100);
   font-weight: var(--font-weight-default);
-  @media (max-width: 1250px) {
+  @media (max-width: 1150px) {
     padding: var(--spacing-lg) var(--spacing-md);
   }
   @media (max-width: 650px) {
@@ -54,7 +54,7 @@ body {
   background-color: var(--neutral-white);
   padding: var(--spacing-xs);
   border-radius: 1rem;
-  @media (max-width: 1250px) {
+  @media (max-width: 1150px) {
     height: 20%;
     width: 100%;
     padding: 0;
@@ -76,14 +76,14 @@ body {
   display: flex;
   justify-content: start;
   padding: var(--spacing-xs) var(--spacing-md) 0 var(--spacing-sm);
-  @media (max-width: 1250px) {
+  @media (max-width: 1150px) {
     display: none;
   }
 }
 
 .mobile-sidebar {
   display: none;
-  @media (max-width: 1250px) {
+  @media (max-width: 1150px) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -104,7 +104,7 @@ body {
 
 .mobile-wrapper {
   display: none;
-  @media (max-width: 1250px) {
+  @media (max-width: 1150px) {
     display: flex;
     padding: 0 0 var(--spacing-md) 0;
     gap: var(--spacing-xs);
@@ -187,6 +187,9 @@ h2 {
   flex-direction: column;
   justify-content: space-between;
   @media (max-width: 1250px) {
+    padding: var(--spacing-sm);
+  }
+  @media (max-width: 1150px) {
     padding: var(--spacing-sm) var(--spacing-xs);
   }
 }
@@ -206,7 +209,7 @@ h2 {
 /* STEP 1 */
 .inputs-wrapper {
   margin-bottom: var(--spacing-md);
-  @media (max-width: 1250px) {
+  @media (max-width: 1150px) {
     margin-bottom: 0;
   }
 }
@@ -248,6 +251,14 @@ input:focus {
 .plans {
   display: flex;
   justify-content: space-between;
+  @media (max-width: 1150px) {
+    margin: var(--spacing-xs) 0 var(--spacing-sm) 0;
+  }
+  @media (max-width: 1150px) {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
 }
 
 .plans > div {
@@ -259,6 +270,15 @@ input:focus {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media (max-width: 1150px) {
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    flex-grow: 2;
+    height: 100%;
+    gap: var(--spacing-xs);
+  }
 }
 
 .plans > div:hover {
@@ -270,6 +290,9 @@ input:focus {
 .plans > div > img {
   width: 3rem;
   margin-bottom: var(--spacing-xs);
+  @media (max-width: 1150px) {
+    margin-bottom: 0;
+  }
 }
 
 .subtitle {
@@ -297,6 +320,9 @@ input:focus {
   align-items: center;
   background-color: var(--neutral-blue-50);
   border-radius: 0.5rem;
+  @media (max-width: 1150px) {
+    margin-bottom: 0;
+  }
 }
 
 .switch {
@@ -446,6 +472,10 @@ input:focus {
   padding: var(--spacing-xs) var(--spacing-sm);
   background-color: var(--neutral-blue-50);
   border-radius: 0.5rem;
+  @media (max-width: 1350px) {
+    padding: var(--spacing-xs);
+    margin: var(--spacing-xs) 0 var(--spacing-sm) 0;
+  }
 }
 
 .price-list a {
@@ -465,12 +495,24 @@ input:focus {
   align-items: center;
 }
 
+.additional {
+  color: var(--neutral-grey-500);
+}
+
 .total {
   width: 100%;
   margin: 0 0 var(--spacing-md) 0;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: var(--spacing-xl);
+  color: var(--neutral-grey-500);
+  @media (max-width: 1360px) {
+    margin: 0;
+    gap: 0;
+    justify-content: space-between;
+    font-size: 0.9rem;
+  }
 }
 
 .add-selection {
@@ -491,6 +533,9 @@ input:focus {
   font-size: 1.3rem;
   font-weight: var(--font-weight-bold);
   color: var(--primary-purple-600);
+  @media (max-width: 650px) {
+    font-size: 0.9rem;
+  }
 }
 
 hr {
@@ -529,14 +574,15 @@ hr {
 .next {
   display: flex;
   justify-content: end;
-  @media (max-width: 1250px) {
+  @media (max-width: 1150px) {
     display: none;
   }
 }
 
-.mobile-next {
+.mobile-next,
+.mobile-backNext {
   display: none;
-  @media (max-width: 1250px) {
+  @media (max-width: 1150px) {
     display: flex;
     width: 100vw;
     position: absolute;
@@ -548,6 +594,10 @@ hr {
     align-items: center;
     background-color: var(--neutral-white);
   }
+}
+
+.mobile-backNext {
+  justify-content: space-between;
 }
 
 .next-btn,
@@ -576,6 +626,9 @@ hr {
 .back-next {
   display: flex;
   justify-content: space-between;
+  @media (max-width: 1150px) {
+    display: none;
+  }
 }
 
 .back-btn {
