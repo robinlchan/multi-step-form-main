@@ -23,36 +23,36 @@
       <div class="sidebar">
         <nav>
           <div class="bar">
-            <p class="number active-number">1</p>
+            <p class="number" id="num1">1</p>
             <p class="step"><span>Step 1</span>Your Info</p>
           </div>
           <div class="bar">
-            <p class="number">2</p>
+            <p class="number" id="num2">2</p>
             <p class="step"><span>Step 2</span>Select plan</p>
           </div>
           <div class="bar">
-            <p class="number">3</p>
+            <p class="number" id="num3">3</p>
             <p class="step"><span>Step 3</span>Add-ons</p>
           </div>
           <div class="bar">
-            <p class="number">4</p>
+            <p class="number" id="num4">4</p>
             <p class="step"><span>Step 4</span>Summary</p>
           </div>
         </nav>
       </div>
       <div class="mobile-sidebar">
         <div class="mobile-wrapper">
-          <p class="number">1</p>
-          <p class="number">2</p>
-          <p class="number active-number">3</p>
-          <p class="number">4</p>
+          <p class="number" id="mobile1">1</p>
+          <p class="number" id="mobile2">2</p>
+          <p class="number" id="mobile3">3</p>
+          <p class="number" id="mobile4">4</p>
         </div>
       </div>
       <main>
         <!-- FORM -->
         <form id="regForm" action="">
           <!-- STEP 1 -->
-          <div id="step1" class="form-step active">
+          <div id="step1" class="form-step">
             <div class="title">
               <h1>Personal info</h1>
               <p>Please provide your name, email address, and phone number.</p>
@@ -95,7 +95,10 @@
               </div>
             </div>
             <div class="next">
-              <button type="button" class="next-btn">Next Step</button>
+              <button type="submit" class="next-btn">Next Step</button>
+            </div>
+            <div class="mobile-next">
+              <button type="submit" class="next-btn">Next Step</button>
             </div>
           </div>
           <!-- STEP 2 -->
@@ -140,7 +143,11 @@
             </div>
             <div class="back-next">
               <button type="button" class="back-btn">Go Back</button>
-              <button type="button" class="next-btn">Next Step</button>
+              <button type="submit" class="next-btn">Next Step</button>
+            </div>
+            <div class="mobile-backNext">
+              <button type="button" class="back-btn">Go Back</button>
+              <button type="submit" class="next-btn">Next Step</button>
             </div>
           </div>
           <!-- STEP 3 -->
@@ -198,7 +205,11 @@
             </div>
             <div class="back-next">
               <button type="button" class="back-btn">Go Back</button>
-              <button type="button" class="next-btn">Next Step</button>
+              <button type="submit" class="next-btn">Next Step</button>
+            </div>
+            <div class="mobile-backNext">
+              <button type="button" class="back-btn">Go Back</button>
+              <button type="submit" class="next-btn">Next Step</button>
             </div>
           </div>
           <!-- STEP 4 -->
@@ -235,9 +246,13 @@
             </div>
             <div class="back-next">
               <button type="button" class="back-btn">Go Back</button>
-              <button type="button" class="confirm-btn" id="confirm">
+              <button type="submit" class="confirm-btn" id="confirm">
                 Confirm
               </button>
+            </div>
+            <div class="mobile-backNext">
+              <button type="button" class="back-btn">Go Back</button>
+              <button type="submit" class="next-btn">Next Step</button>
             </div>
           </div>
           <!-- CONFIRMATION MESSAGE -->
@@ -251,13 +266,6 @@
             </p>
           </div>
         </form>
-        <div class="mobile-next">
-          <button type="button" class="next-btn">Next Step</button>
-        </div>
-        <div class="mobile-backNext">
-          <button type="button" class="back-btn">Go Back</button>
-          <button type="button" class="next-btn">Next Step</button>
-        </div>
       </main>
     </div>
     <script src="index.js"></script>
