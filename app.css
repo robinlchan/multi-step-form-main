@@ -261,7 +261,7 @@ input:focus {
   }
 }
 
-.plans > div {
+.plan {
   width: 30%;
   height: 11rem;
   padding: var(--spacing-xs);
@@ -281,10 +281,14 @@ input:focus {
   }
 }
 
-.plans > div:hover {
+.plan:hover {
   border: 1px solid var(--primary-purple-600);
   cursor: pointer;
-  /* background-color: var(--neutral-blue-50); */
+}
+
+.selected-plan {
+  border: 1px solid var(--primary-purple-600);
+  background-color: var(--neutral-blue-50);
 }
 
 .plans > div > img {
@@ -300,7 +304,8 @@ input:focus {
   color: var(--primary-blue-950);
 }
 
-.subtitle > p {
+.monthly-sub,
+.yearly-sub {
   margin: 0.4rem 0 0 0;
   color: var(--neutral-grey-500);
 }

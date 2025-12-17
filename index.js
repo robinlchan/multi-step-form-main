@@ -18,6 +18,12 @@ const mobile4 = document.querySelector("#mobile4");
 const mobileBack = document.querySelector(".mobile-backNext");
 const mobileNext = document.querySelector(".mobile-next");
 const confirmBtn = document.querySelectorAll(".confirm-btn");
+const toggleBtn = document.querySelector(".slider-round");
+const arcade = document.querySelector(".arcade");
+const advanced = document.querySelector(".advanced");
+const pro = document.querySelector(".pro");
+const plans = document.querySelectorAll(".plan");
+const checkbox = document.querySelectorAll(".checkmark");
 // Errors
 const nameInput = document.querySelector("#name");
 const emailInput = document.querySelector("#email");
@@ -30,7 +36,7 @@ form.setAttribute("novalidate", "");
 // Event Listeners
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  validateStep1();
+  validateSteps();
 });
 // Active states display
 function activate(step, num, mobileNum) {
@@ -40,10 +46,11 @@ function activate(step, num, mobileNum) {
     mobileNum.classList.add("active-number");
   }
 }
-activate(step1, num1, mobile1);
+activate(step2, num2, mobile2);
 
 function deActivate(step, num, mobileNum) {
   if (step.classList.contains("active")) {
+    step.classList.remove("active");
     num.classList.remove("active-number");
     mobileNum.classList.remove("active-number");
   }
@@ -62,46 +69,61 @@ function removeError(input, error) {
   return true;
 }
 // Validation
-function validateStep1() {
+function validateSteps() {
   const nameValue = nameInput.value;
   const emailValue = emailInput.value;
   const phoneValue = phoneInput.value;
   const namePattern = /^[a-zA-Z\s'-]+$/;
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const phonePattern = /^\d{10}$/;
-  if (nameValue.trim() === "" || !namePattern.test(nameValue)) {
+  if (nameValue.trim() === "" || nameValue.trim() === null) {
     showError(nameInput, nameError);
+  } else if (!namePattern.test(nameValue)) {
+    showError(nameInput, nameError);
+    nameError.innerText = "Please enter a first and last name";
   } else {
     removeError(nameInput, nameError);
   }
-  if (emailValue.trim() === "" || !emailPattern.test(emailValue)) {
+  if (emailValue.trim() === "" || emailValue.trim() === null) {
     showError(emailInput, emailError);
+  } else if (!emailPattern.test(emailValue)) {
+    showError(emailInput, emailError);
+    emailError.innerText = "Must be a valid email address";
   } else {
     removeError(emailInput, emailError);
   }
-  if (phoneValue.trim() === "" || !phonePattern.test(phoneValue)) {
+  if (phoneValue.trim() === "" || phoneValue.trim() === null) {
     showError(phoneInput, phoneError);
+  } else if (!phonePattern.test(phoneValue)) {
+    showError(phoneInput, phoneError);
+    phoneError.innerText = "Must be a 10 digit phone number";
   } else {
     removeError(phoneInput, phoneError);
   }
-  // Submit form
-  const oneInputs = step1.querySelectorAll("input");
-  const oneInputsArr = Array.from(oneInputs);
-  const oneInputsValid = oneInputsArr.every(
-    (input) => !input.classList.contains("error")
-  );
 
-  if (oneInputsValid) {
-    form.addEventListener("submit", () => {
-      deActivate(step1, num1, mobile1);
-      activate(step2, num2, mobile2);
-    });
-  } else {
-    return false;
-  }
+  const allPlans = Array.from(plans).every((plan) => {
+    if (plan.classList.contains("selected-plan")) {
+      console.log("There is a selected plan!");
+    }
+  });
+  // // Submit form
+  // const oneInputs = step1.querySelectorAll("input");
+  // const oneInputsArr = Array.from(oneInputs);
+  // const oneInputsValid = oneInputsArr.every(
+  //   (input) => !input.classList.contains("error")
+  // );
+
+  // if (oneInputsValid) {
+  //   form.addEventListener("submit", () => {
+  //     deActivate(step1, num1, mobile1);
+  //     activate(step2, num2, mobile2);
+  //   });
+  // } else {
+  //   return false;
+  // }
 }
 
-// Event Listeners on inputs
+// STEP 1 EVENT LISTENERS
 nameInput.addEventListener("change", () => {
   removeError(nameInput, nameError);
 });
@@ -110,4 +132,37 @@ emailInput.addEventListener("change", () => {
 });
 phoneInput.addEventListener("change", () => {
   removeError(phoneInput, phoneError);
+});
+// STEP 2 EVENT LISTENERS
+toggleBtn.addEventListener("click", () => {
+  const monthly = document.querySelectorAll(".monthly-sub");
+  const yearly = document.querySelectorAll(".yearly-sub, .yearly");
+  monthly.forEach((month) => {
+    month.classList.toggle("hidden");
+  });
+  yearly.forEach((year) => {
+    year.classList.toggle("hidden");
+  });
+});
+
+plans.forEach((plan) => {
+  plan.addEventListener("click", () => {
+    if (plan === arcade) {
+      arcade.classList.add("selected-plan");
+      advanced.classList.remove("selected-plan");
+      pro.classList.remove("selected-plan");
+    } else if (plan === advanced) {
+      advanced.classList.add("selected-plan");
+      arcade.classList.remove("selected-plan");
+      pro.classList.remove("selected-plan");
+    } else {
+      pro.classList.add("selected-plan");
+      arcade.classList.remove("selected-plan");
+      advanced.classList.remove("selected-plan");
+    }
+  });
+});
+// STEP 3 EVENT LISTENERS
+checkbox.forEach((check) => {
+  check.addEventListener("click", () => {});
 });
