@@ -520,7 +520,7 @@ input:focus {
   }
 }
 
-.add-selection {
+.add {
   color: var(--neutral-grey-500);
 }
 
@@ -534,7 +534,7 @@ input:focus {
   font-weight: var(--font-weight-bold);
 }
 
-#cost {
+#total-cost {
   font-size: 1.3rem;
   font-weight: var(--font-weight-bold);
   color: var(--primary-purple-600);
