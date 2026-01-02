@@ -237,11 +237,16 @@ input[type="text"] {
   border-radius: 0.5rem;
 }
 
-input:hover,
-input:focus {
+input:hover {
   outline: none;
   border: 1px solid var(--primary-purple-600);
   cursor: pointer;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid var(--primary-purple-600);
+  cursor: auto;
 }
 /* STEP 2 */
 #step2 {
@@ -484,24 +489,28 @@ input:focus {
 }
 
 .price-list a {
-  color: var(--neutral-grey-500);
+  color: var(--primary-purple-600);
+  font-weight: var(--font-weight-med);
   font-size: 0.9rem;
 }
 
 .price-list a:hover {
   text-decoration: underline;
-  color: var(--primary-purple-600);
   cursor: pointer;
 }
 
 .plan-selection {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
+  color: var(--neutral-grey-500);
 }
 
-.additional {
-  color: var(--neutral-grey-500);
+.monthly-cost,
+.yearly-cost {
+  color: var(--primary-blue-950);
+  font-weight: var(--font-weight-med);
 }
 
 .total {
@@ -518,10 +527,6 @@ input:focus {
     justify-content: space-between;
     font-size: 0.9rem;
   }
-}
-
-.add {
-  color: var(--neutral-grey-500);
 }
 
 .add-price {

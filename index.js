@@ -24,6 +24,7 @@ const next1 = document.querySelectorAll(".next1");
 const next2 = document.querySelectorAll(".next2");
 const next3 = document.querySelectorAll(".next3");
 const backBtns = document.querySelectorAll(".back-btn");
+const back4 = document.querySelector("#back4");
 const confirmBtn = document.querySelectorAll(".confirm-btn");
 const toggleBtn = document.querySelector(".slider-round");
 const checkbox = document.querySelectorAll(".checkmark");
@@ -35,28 +36,21 @@ const nameError = document.querySelector("#name-error");
 const emailError = document.querySelector("#email-error");
 const phoneError = document.querySelector("#phone-error");
 // Prices
-const arcadeM = 9;
-const arcadeY = 90;
-const advancedM = 12;
-const advancedY = 120;
-const proM = 15;
-const proY = 150;
 const price = document.querySelector("#subscription-price");
-const add = document.querySelectorAll(".add");
-const planAddOns = document.querySelectorAll(".plan-selection");
 const cost = document.getElementById("total-cost");
-let total = 0;
 
 form.setAttribute("novalidate", "");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
+let total = 0;
 let currentStep = 0;
 let currentNum = 0;
 const steps = document.querySelectorAll(".form-step");
 const desktopNums = document.querySelectorAll(".desktop");
 const mobileNums = document.querySelectorAll(".mobile");
+
 // Active form step
 function showStep(stepIndex) {
   steps.forEach((step) => {
@@ -95,6 +89,7 @@ function prevStep() {
     mobileShowNum(currentNum);
   }
 }
+
 // STEP 1
 function validateStep1() {
   const nameValue = nameInput.value;
@@ -167,7 +162,13 @@ function validateStep2() {
   const advYearly = document.querySelector("#adv-yearly");
   const arcMonthly = document.querySelector("#arc-monthly");
   const arcYearly = document.querySelector("#arc-yearly");
-
+  // Costs
+  const arcadeM = 9;
+  const arcadeY = 90;
+  const advancedM = 12;
+  const advancedY = 120;
+  const proM = 15;
+  const proY = 150;
   // Arcade
   if (
     arcade.classList.contains("selected-plan") &&
@@ -242,98 +243,86 @@ function validateStep2() {
 }
 // STEP 3
 function validateStep3() {
-  // Add-ons costs (mo/yr)
   const addOneM = 1;
   const addTwoM = 2;
   const addOneY = 10;
   const addTwoY = 20;
 
-  // Setting prices for add-ons
   const onlineM = document.querySelector("#online-monthly");
   const onlineY = document.querySelector("#online-yearly");
   const storageM = document.querySelector("#storage-monthly");
   const storageY = document.querySelector("#storage-yearly");
   const profileM = document.querySelector("#profile-monthly");
   const profileY = document.querySelector("#profile-yearly");
-  onlineM.innerText = `$${addOneM}/mo`;
-  onlineY.innerText = `$${addOneY}/yr`;
-  storageM.innerText = `$${addTwoM}/mo`;
-  storageY.innerText = `$${addTwoY}/yr`;
-  profileM.innerText = `$${addTwoM}/mo`;
-  profileY.innerText = `$${addTwoY}/yr`;
-  // Step 3 list of add-on to select
+
+  function isMonthly(addOn) {
+    if (addOn === online) {
+      total += addOneM;
+    } else if (addOn === storage || addOn === customize) {
+      total += addTwoM;
+    }
+    return (cost.innerText = `$${total}/mo`);
+  }
+  function isYearly(addOn) {
+    if (addOn === online) {
+      total += addOneY;
+    } else if (addOn === storage || addOn === customize) {
+      total += addTwoY;
+    }
+    return (cost.innerText = `$${total}/yr`);
+  }
+
   const online = document.getElementById("service");
   const storage = document.getElementById("storage");
   const customize = document.getElementById("profile");
-  // Step 4 list of add-ons
   const onlineList = document.getElementById("online");
   const storageList = document.getElementById("larger");
   const customizeList = document.getElementById("customize");
-  // Spans that show price of add-ons on Step 4
-  const pricesCostM = document.querySelectorAll(".monthly-cost");
-  const pricesCostY = document.querySelectorAll(".yearly-cost");
 
-  if (online.checked === true) {
+  if (online.checked === true && !onlineM.classList.contains("hidden")) {
     online.classList.add("selected-add");
     onlineList.classList.remove("hidden");
-    onlineList.classList.add("selected");
+    isMonthly(online);
+  } else if (online.checked === true && !onlineY.classList.contains("hidden")) {
+    online.classList.add("selected-add");
+    onlineList.classList.remove("hidden");
+    isYearly(online);
   } else {
     online.classList.remove("selected-add");
     onlineList.classList.add("hidden");
-    onlineList.classList.remove("selected");
   }
 
-  if (storage.checked === true) {
+  if (storage.checked === true && !storageM.classList.contains("hidden")) {
     storage.classList.add("selected-add");
     storageList.classList.remove("hidden");
-    storageList.classList.add("selected");
+    isMonthly(storage);
+  } else if (
+    storage.checked === true &&
+    !storageY.classList.contains("hidden")
+  ) {
+    storage.classList.add("selected-add");
+    storageList.classList.remove("hidden");
+    isYearly(storage);
   } else {
     storage.classList.remove("selected-add");
     storageList.classList.add("hidden");
-    storageList.classList.remove("selected");
   }
 
-  if (customize.checked === true) {
+  if (customize.checked === true && !profileM.classList.contains("hidden")) {
     customize.classList.add("selected-add");
     customizeList.classList.remove("hidden");
-    customizeList.classList.add("selected");
+    isMonthly(customize);
+  } else if (
+    customize.checked === true &&
+    !profileY.classList.contains("hidden")
+  ) {
+    customize.classList.add("selected-add");
+    customizeList.classList.remove("hidden");
+    isYearly(customize);
   } else {
     customize.classList.remove("selected-add");
     customizeList.classList.add("hidden");
-    customizeList.classList.remove("selected");
   }
-
-  function isMonthly() {
-    pricesCostM.forEach((cost) => {
-      cost.classList.remove("hidden");
-    });
-    pricesCostY.forEach((cost) => {
-      cost.classList.add("hidden");
-    });
-  }
-  function isYearly() {
-    pricesCostY.forEach((cost) => {
-      cost.classList.remove("hidden");
-    });
-    pricesCostM.forEach((cost) => {
-      cost.classList.add("hidden");
-    });
-  }
-  // on step 4, listing prices of each add on to our total cost
-  // add is our list of spans that have the prices for step 4 summary
-  add.forEach((addOn) => {
-    if (
-      addOn.classList.contains("monthly-cost") &&
-      !addOn.classList.contains(".hidden")
-    ) {
-      isMonthly();
-    } else if (
-      addOn.classList.contains("yearly-cost") &&
-      !addOn.classList.contains("hidden")
-    ) {
-      isYearly();
-    }
-  });
 }
 
 // EVENT LISTENERS ON PAGE
@@ -366,32 +355,33 @@ confirmBtn.forEach((btn) => {
   });
 });
 backBtns.forEach((btn) => {
-  btn.addEventListener("click", prevStep);
+  btn.addEventListener("click", () => {
+    prevStep();
+  });
 });
-// STEP 2 EVENT LISTENERS
+
 toggleBtn.addEventListener("click", () => {
   const monthly = document.querySelectorAll(".monthly-sub");
   const yearly = document.querySelectorAll(".yearly-sub, .yearly");
   const yearlyAddOn = document.querySelectorAll(".yearly-add");
   const monthlyAddOn = document.querySelectorAll(".monthly-add");
+  const pricesCostM = document.querySelectorAll(".monthly-cost");
+  const pricesCostY = document.querySelectorAll(".yearly-cost");
 
-  function toggleSub() {
-    monthlyAddOn.forEach((on) => {
-      on.classList.toggle("hidden");
+  function toggleSub(monthVal, yearVal) {
+    monthVal.forEach((month) => {
+      month.classList.toggle("hidden");
     });
-    yearlyAddOn.forEach((on) => {
-      on.classList.toggle("hidden");
+    yearVal.forEach((year) => {
+      year.classList.toggle("hidden");
     });
   }
-  monthly.forEach((month) => {
-    month.classList.toggle("hidden");
-    toggleSub();
-  });
-  yearly.forEach((year) => {
-    year.classList.toggle("hidden");
-    toggleSub();
-  });
+
+  toggleSub(monthly, yearly);
+  toggleSub(monthlyAddOn, yearlyAddOn);
+  toggleSub(pricesCostM, pricesCostY);
 });
+
 function showError(plan) {
   plan.style.border = "1px solid var(--primary-red-500)";
 }
@@ -424,7 +414,9 @@ plans.forEach((plan) => {
     }
   });
 });
-// STEP 3 EVENT LISTENERS
-// checkbox.forEach((check) => {
-//   check.addEventListener("click", () => {});
-// });
+
+const change = document.querySelector(".change");
+change.addEventListener("click", () => {
+  prevStep();
+  prevStep();
+});
